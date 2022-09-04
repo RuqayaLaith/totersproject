@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:totersproject/totersproject/page1/page1.dart';
+import 'package:totersproject/totersproject/Homepage/HomePage.dart';
 
 class splash extends StatefulWidget {
   const splash({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class _splashState extends State<splash> {
     await new Future.delayed(const Duration(seconds: 4));
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => page1()),
+      MaterialPageRoute(builder: (context) => HomePage()),
     );
   }
   @override

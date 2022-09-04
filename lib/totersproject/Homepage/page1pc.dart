@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:totersproject/totersproject/OrdersPage2.dart';
+import 'package:totersproject/totersproject/Homepage/indecrement.dart';
+import 'package:totersproject/totersproject/profile.dart';
+import 'package:totersproject/totersproject/search.dart';
 
 class page1pc extends StatefulWidget {
   final String image;
@@ -27,53 +31,133 @@ class page1pc extends StatefulWidget {
 }
 
 class _page1pcState extends State<page1pc> {
+  int _selected = 3;
+  List<Widget> screens = [
+    profile(),
+
+    orders(),
+    search(),
+
+  ];
+
+  get primaryColor => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_pin,
+            ),
+            label: ("Account"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.list_alt,
+            ),
+            label: 'Orders',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+            ),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: ('Home'),
+          ),
+        ],
+        selectedItemColor: Color(0xff00b28e),
+        unselectedItemColor: Colors.grey,
+        selectedIconTheme: IconThemeData(size: 32),
+        unselectedIconTheme: IconThemeData(size: 30),
+        selectedLabelStyle: TextStyle(fontSize: 16, color: primaryColor),
+        unselectedLabelStyle: TextStyle(fontSize: 14, color: primaryColor),
+        currentIndex: _selected,
+        onTap: (index) {
+          setState(() {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => screens[index]));
+          });
+        },
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.55,
-                decoration: BoxDecoration(
-                    color: Colors.black54,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(widget.image),
-                    )),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 420, left: 300),
-                height: 50,
-                width: 75,
-                decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(blurRadius: 2)],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+
+           Stack(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => indecrement()));
+                  },
+                  child:  Container(
+                  height: MediaQuery.of(context).size.height * 0.44,
+                  decoration: BoxDecoration(
+                      color: Colors.black54,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(widget.image),
+                      )),
+                ),),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 25, left: 350),
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+
+                    child: Icon(
+                      Icons.arrow_forward,
+                      size: 25,
+                    ),
+                  ),
+
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          (widget.number),
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        Text(
-                          (widget.mins),
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                      ],
-                    )
-                  ],
+                Container(
+                  margin: EdgeInsets.only(top: 350, left: 300),
+                  height: 50,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    boxShadow: [BoxShadow(blurRadius: 2)],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            (widget.number),
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Text(
+                            (widget.mins),
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+
+
+
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -16,3 +16,8 @@ String cans = "10% canshback";
 String earn = "Earn Points";
 String num2 = "4.8";
 String based = "Based on 1200 ratings";
+
+String of1="images/1im.jpg";
+String of2="images/2im.jpg";
+String of3="images/3im.jpg";
+String of4="images/4im.jpg";
